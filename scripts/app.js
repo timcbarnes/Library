@@ -12,12 +12,25 @@ function Book(title, author, pages, read) {
 
 function addToLibrary(title, author, pages, read) {
   const book = new Book(title, author, pages, read);
-  library.push(book)
-  return book;
+  library.push(book);
+  renderLibrary(library);
 }
 
-function displayLibrary(array) {
+function renderLibrary(array) {
   array.forEach((item) => {
-    return item;
+    const container = document.getElementById('container');
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerText = item.info();
+    container.appendChild(card);
   });
 }
+
+function handleAddBtn() {
+  document.getElementById('addBook').addEventListener('submit', () => {
+    addToLibrary(title, author, pages, read);
+    renderLibrary(library);
+  });
+}
+handleAddBtn();
+addToLibrary("The Gunslinger", "Stephen King", "600", false);

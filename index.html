@@ -12,24 +12,20 @@
 
   <body>
     <div id="container">
-      <div class="card">
-        <div class="content">
-          The Stand
-          Steven King
-          1400 Pages
+      <form id="addBook" onsubmit="return false">
+        <label>Title</label>
+        <input id="title" type="text" required>
+        <label>Author</label>
+        <input id="author" type="text" required>
+        <label>Pages</label>
+        <input id="pages" type="text" required>
+        <div id="check">
+          <input id="read" name="checkbox" type="checkbox">
+          <label id="readLabel">I've read this!</label>
         </div>
+        <input id="add" type="submit" value="Add Book">
+      </form>
     </div>
-    <form id="addBook" onsubmit="return false">
-      <label>Title</label>
-      <input id="title "type="text" required>
-      <label>Author</label>
-      <input id="author" type="text" required>
-      <label>Pages</label>
-      <input id="pages" type="text" required>
-      <input id="read" name="checkbox" type="checkbox">
-      <label id="readLabel">I've read this!</label>
-      <input id="add" type="submit" value="Add Book">
-    </form>
 
   </body>
 
