@@ -12,6 +12,7 @@
 
   <body>
     <div id="container">
+      <div id="addCard">New Book</div>
       <form id="addBook" onsubmit="return false">
         <label>Title</label>
         <input id="title" type="text" required>
@@ -24,7 +25,9 @@
           <label id="readLabel">I've read this!</label>
         </div>
         <input id="add" type="submit" value="Add Book">
+        <button id="cancel">Cancel</button>
       </form>
+      <div id="library"></div>
     </div>
 
   </body>
