@@ -1,4 +1,9 @@
 let library = [];
+if(!getLibrary('library')) {
+  setLibrary('library', library);
+} else {
+  library = getLibrary('library');
+}
 const libContainer = document.getElementById('library');
 
 function Book(title, author, pages, read) {
@@ -6,9 +11,6 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-  }
 }
 
 function addToLibrary(title, author, pages, read) {
@@ -26,11 +28,17 @@ function renderLibrary(array) {
   array.forEach((item) => {
     const card = document.createElement('div');
     card.className = 'card';
-    card.innerHTML = item.info() + '<button id="delete">Delete</button>';
+    card.innerHTML = `${item.author}<br />${item.title}<br />` + 
+      `${item.pages} pages<br />${item.read}` +
+      '<button id="read">Reading Status</button>' + 
+      '<button id="delete">Remove</button>';
     card.id = i;
     libContainer.appendChild(card);
     i++;
   });
+  setLibrary('library', library);
+  handleReadBtn();
+  handleDeleteBtn();
 }
 
 function handleAddBtn() {
@@ -60,27 +68,51 @@ function handleCancelBtn() {
   const addCard = document.getElementById('addCard');
   const addBook = document.getElementById('addBook');
   document.getElementById('cancel').addEventListener('click', () => {
+    addBook.reset();
     addCard.style.cssText = "display: flex";
     addBook.style.cssText = "display: none";
   });
 }
 
+function readBook(index) {
+  if (library[index].read === "Read") {
+    library[index].read = "Not Read";
+  } else {
+    library[index].read = "Read";
+  }
+  renderLibrary(library);
+}
+
+function handleReadBtn() {
+  document.querySelectorAll('#read').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      readBook(btn.parentElement.id);
+    });
+  });
+}
+
 function deleteBook(index) {
-  library = library.slice(index, index + 1);
+  library.splice(index, 1);
   renderLibrary(library);
 }
 
 function handleDeleteBtn() {
-  document.querySelectorAll('delete').forEach((btn) => {
+  document.querySelectorAll('#delete').forEach((btn) => {
     btn.addEventListener('click', () => {
-      deleteBook(this.parentElement.id);
-      console.log(btn);
+      deleteBook(btn.parentElement.id);
     });
   });
+}
+
+function setLibrary(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getLibrary(key) {
+  return JSON.parse(localStorage.getItem(key));
 }
 
 handleAddBtn();
 handleFormSubmit();
 handleCancelBtn();
-addToLibrary("The Gunslinger", "Stephen King", "600", false);
-handleDeleteBtn();
+renderLibrary(library);

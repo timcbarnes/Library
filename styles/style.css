@@ -8,20 +8,50 @@ html, body {
 
 #container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   margin: 0.5% 0% 0% 0.5%;
 }
 
+#addCard {
+  justify-content: center;
+  background: linear-gradient(#d1b5f5, #2a5175);
+}
+
+#addBook, #addCard {
+  display: flex;
+  align-self: center;
+  justify-self: flex-start;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 99%;
+  height: 50px;
+  margin: 1% 1% 1% 1%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  font-size: 14pt;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#addBook {
+  display: none;
+  font-size: 10pt;
+  text-align: center;
+  background: linear-gradient(#2a5175, #d1b5f5);
+}
+
 #library {
   display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: flex-start;
 }
 
-.card, #addBook, #addCard {
+.card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,47 +69,40 @@ html, body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#addCard {
-  background: linear-gradient(#d1b5f5, #2a5175); 
-}
-
-#addBook {
-  display: none;
-  font-size: 10pt;
-  text-align: left;
-  background: linear-gradient(#2a5175, #d1b5f5);
-}
-
 #title, #author, #pages {
-  margin-bottom: 1%;
-  width: 85%;
-  height: 11%;
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  height: 40%;
   border: none;
   border-radius: 0.3em;
 }
 
 label {
-  width: 89%;
-  margin-bottom: 2px;
+  width: 50%;
 }
 
 #check {
   width: 80%;
-  align-self: flex-start;
-  margin-left: 3%;
-  margin-bottom: 3%;
+  align-self: center;
+  justify-self: center;
 }
 
 #add, #cancel {
+  margin-left: 1px;
+  margin-right: 1px;
   border: none;
   border-radius: 0.3em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
+  font-size: 12px;
   color: white;
   background: #003464;
 }
 
-#delete {
+#delete, #read {
+  margin-top: 3px;
+  margin-bottom: 3px;
   align-self: center;
   justify-self: flex-end;
   border: none;
